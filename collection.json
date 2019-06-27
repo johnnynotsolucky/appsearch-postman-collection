@@ -1,0 +1,239 @@
+{
+	"info": {
+		"name": "Swiftype AppSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"query\": \"document\",\n\t\"filters\": {\n\t\t\"any\": [\n\t\t\t{\"some_array\": \"value 1\"},\n\t\t\t{\"number_array\": 4}\n\t\t]\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines/ty-test-01/search",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines",
+								"ty-test-01",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Click",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"document\",\n  \"request_id\": \"request id\",\n  \"document_id\": \"document-01\",\n  \"tags\": [\"foo\", \"bar\"]\n}"
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines/ty-test-01/click",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines",
+								"ty-test-01",
+								"click"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{swiftype_search_key}}",
+						"type": "string"
+					}
+				]
+			}
+		},
+		{
+			"name": "Private",
+			"item": [
+				{
+					"name": "Index Documents",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"id\": \"document-01\",\n\t\t\"title\": \"Document 01\",\n\t\t\"description\": \"Foobar\",\n\t\t\"some_array\": [\n\t\t\t\"value 1\",\n\t\t\t\"value 2\"\n\t\t],\n\t\t\"number_array\": [\n\t\t\t1,\n\t\t\t2,\n\t\t\t3\n\t\t]\n\t},\n\t{\n\t\t\"id\": \"document-02\",\n\t\t\"title\": \"Document 02\",\n\t\t\"description\": \"Foobar 2\",\n\t\t\"some_array\": [\n\t\t\t\"value 1\",\n\t\t\t\"value 3\"\n\t\t],\n\t\t\"number_array\": [\n\t\t\t3,\n\t\t\t4,\n\t\t\t5\n\t\t]\n\t}\n]"
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines/ty-test-01/documents",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines",
+								"ty-test-01",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Engine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"ty-test-01\"\n}"
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Analytics: Queries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines/ty-test-01/analytics/queries",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines",
+								"ty-test-01",
+								"analytics",
+								"queries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Analytics: Clicks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"query\": \"document\"\n}"
+						},
+						"url": {
+							"raw": "{{swiftype_host}}/api/as/v1/engines/ty-test-01/analytics/clicks",
+							"host": [
+								"{{swiftype_host}}"
+							],
+							"path": [
+								"api",
+								"as",
+								"v1",
+								"engines",
+								"ty-test-01",
+								"analytics",
+								"clicks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{swiftype_private_key}}",
+						"type": "string"
+					}
+				]
+			}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{swiftype_private_key}}",
+				"type": "string"
+			}
+		]
+	}
+}
